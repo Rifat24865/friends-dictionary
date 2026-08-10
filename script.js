@@ -1,12 +1,7 @@
 /* =====================================================
    FRIENDS DICTIONARY
    FINAL CLEAN SCRIPT
-   46 FRIENDS + SEARCH + MOBILE MENU
-===================================================== */
-
-
-/* =====================================================
-   FRIEND DATA
+   46 FRIENDS
 ===================================================== */
 
 const friends = [
@@ -511,7 +506,7 @@ const friends = [
         profession: "Job",
         blood: "O+",
         address: "Kaliganj, Gazipur",
-        email: "mehedihasanshaown376@gmail.com",
+        email: "mehedihasanshaon376@gmail.com",
         photo: "images/42.jpg"
     },
 
@@ -585,7 +580,152 @@ const profileEmail = document.getElementById("profileEmail");
 
 
 /* =====================================================
-   MOBILE MENU STYLE
+   SHOW PROFILE
+===================================================== */
+
+function showProfile(friend) {
+
+    if (!friend) return;
+
+    profileImage.src = friend.photo;
+    profileImage.alt = friend.name;
+
+    profileImage.onerror = function () {
+        this.onerror = null;
+        this.src = "https://via.placeholder.com/300/171e28/ffffff?text=User";
+    };
+
+    profileName.textContent = friend.name;
+    profileGroup.textContent = friend.group;
+
+    profilePhone.textContent = friend.phone;
+    profilePhone.href = "tel:" + friend.phone;
+
+    profileProfession.textContent = friend.profession;
+    profileBlood.textContent = friend.blood;
+
+    profileAddress.textContent = friend.address;
+    profileAddress.href =
+        "https://www.google.com/maps/search/?api=1&query=" +
+        encodeURIComponent(friend.address);
+
+    profileEmail.textContent = friend.email;
+    profileEmail.href = "mailto:" + friend.email;
+}
+
+
+/* =====================================================
+   SHOW FRIEND LIST
+===================================================== */
+
+function showFriends(list) {
+
+    friendList.innerHTML = "";
+
+    if (list.length === 0) {
+
+        friendList.innerHTML = `
+            <div style="
+                color:#687482;
+                padding:20px 10px;
+                text-align:center;
+                font-size:13px;
+            ">
+                No friend found
+            </div>
+        `;
+
+        return;
+    }
+
+    list.forEach((friend, index) => {
+
+        const div = document.createElement("div");
+
+        div.className = "friend";
+
+        if (index === 0) {
+            div.classList.add("active");
+        }
+
+        div.innerHTML = `
+            <img
+                src="${friend.photo}"
+                alt="${friend.name}"
+                onerror="
+                    this.onerror=null;
+                    this.src='https://via.placeholder.com/100/171e28/ffffff?text=User';
+                "
+            >
+
+            <div>
+                <div class="friend-name">
+                    ${friend.name}
+                </div>
+
+                <div class="friend-group">
+                    ${friend.group}
+                </div>
+            </div>
+        `;
+
+        div.addEventListener("click", function () {
+
+            document
+                .querySelectorAll(".friend")
+                .forEach(item => {
+                    item.classList.remove("active");
+                });
+
+            div.classList.add("active");
+
+            showProfile(friend);
+
+            if (window.innerWidth <= 800) {
+                closeMobileMenu();
+            }
+
+        });
+
+        friendList.appendChild(div);
+
+    });
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+searchInput.addEventListener("input", function () {
+
+    const search = searchInput.value
+        .toLowerCase()
+        .trim();
+
+    const filtered = friends.filter(friend => {
+
+        return (
+            friend.name.toLowerCase().includes(search) ||
+            friend.group.toLowerCase().includes(search) ||
+            friend.profession.toLowerCase().includes(search) ||
+            friend.blood.toLowerCase().includes(search) ||
+            friend.address.toLowerCase().includes(search)
+        );
+
+    });
+
+    showFriends(filtered);
+
+    if (filtered.length > 0) {
+        showProfile(filtered[0]);
+    }
+
+});
+
+
+/* =====================================================
+   MOBILE MENU
 ===================================================== */
 
 const mobileStyle = document.createElement("style");
@@ -673,25 +813,6 @@ mobileStyle.textContent = `
         padding-top: 72px !important;
     }
 
-    .top-bar {
-        padding-left: 5px;
-    }
-
-    .mobile-menu-title {
-        display: block;
-        margin-bottom: 15px;
-        color: #8d98a6;
-        font-size: 12px;
-        letter-spacing: 1px;
-    }
-}
-
-@media (min-width: 801px) {
-
-    .mobile-menu-title {
-        display: none;
-    }
-
 }
 
 `;
@@ -727,29 +848,16 @@ document.body.appendChild(mobileOverlay);
 
 
 /* =====================================================
-   MOBILE MENU TITLE
-===================================================== */
-
-const menuTitle = document.createElement("div");
-
-menuTitle.className = "mobile-menu-title";
-menuTitle.textContent = "FRIENDS LIST";
-
-friendList.parentElement.insertBefore(
-    menuTitle,
-    friendList
-);
-
-
-/* =====================================================
    OPEN MOBILE MENU
 ===================================================== */
 
 function openMobileMenu() {
 
-    document
-        .querySelector(".sidebar")
-        .classList.add("mobile-open");
+    const sidebar = document.querySelector(".sidebar");
+
+    if (!sidebar) return;
+
+    sidebar.classList.add("mobile-open");
 
     mobileOverlay.classList.add("show");
 
@@ -763,9 +871,11 @@ function openMobileMenu() {
 
 function closeMobileMenu() {
 
-    document
-        .querySelector(".sidebar")
-        .classList.remove("mobile-open");
+    const sidebar = document.querySelector(".sidebar");
+
+    if (!sidebar) return;
+
+    sidebar.classList.remove("mobile-open");
 
     mobileOverlay.classList.remove("show");
 
@@ -774,36 +884,26 @@ function closeMobileMenu() {
 
 
 /* =====================================================
-   MENU BUTTON CLICK
+   MENU BUTTON
 ===================================================== */
 
-menuButton.addEventListener(
-    "click",
-    () => {
+menuButton.addEventListener("click", function () {
 
-        const sidebar =
-            document.querySelector(".sidebar");
+    const sidebar = document.querySelector(".sidebar");
 
-        if (
-            sidebar.classList.contains(
-                "mobile-open"
-            )
-        ) {
+    if (!sidebar) return;
 
-            closeMobileMenu();
-
-        } else {
-
-            openMobileMenu();
-
-        }
-
+    if (sidebar.classList.contains("mobile-open")) {
+        closeMobileMenu();
+    } else {
+        openMobileMenu();
     }
-);
+
+});
 
 
 /* =====================================================
-   OVERLAY CLICK
+   OVERLAY
 ===================================================== */
 
 mobileOverlay.addEventListener(
@@ -813,104 +913,34 @@ mobileOverlay.addEventListener(
 
 
 /* =====================================================
-   SHOW FRIEND LIST
+   WINDOW RESIZE
 ===================================================== */
 
-function showFriends(list) {
+window.addEventListener("resize", function () {
 
-    friendList.innerHTML = "";
-
-    if (list.length === 0) {
-
-        friendList.innerHTML = `
-            <div style="
-                color:#687482;
-                padding:20px 10px;
-                text-align:center;
-                font-size:13px;
-            ">
-                No friend found
-            </div>
-        `;
-
-        return;
+    if (window.innerWidth > 800) {
+        closeMobileMenu();
     }
 
-
-    list.forEach(
-        (friend, index) => {
-
-            const div =
-                document.createElement("div");
-
-            div.className = "friend";
+});
 
 
-            if (index === 0) {
+/* =====================================================
+   INITIALIZE
+===================================================== */
 
-                div.classList.add("active");
+friendCount.textContent = friends.length;
 
-            }
+showFriends(friends);
 
-
-            div.innerHTML = `
-
-                <img
-                    src="${friend.photo}"
-                    alt="${friend.name}"
-                    onerror="
-                        this.src='images/default.jpg'
-                    "
-                >
-
-                <div>
-
-                    <div class="friend-name">
-                        ${friend.name}
-                    </div>
-
-                    <div class="friend-group">
-                        ${friend.group}
-                    </div>
-
-                </div>
-
-            `;
+showProfile(friends[0]);
 
 
-            div.addEventListener(
-                "click",
-                () => {
+/* =====================================================
+   DEBUG
+===================================================== */
 
-                    document
-                        .querySelectorAll(".friend")
-                        .forEach(
-                            item => {
-
-                                item.classList.remove(
-                                    "active"
-                                );
-
-                            }
-                        );
-
-
-                    div.classList.add("active");
-
-
-                    showProfile(friend);
-
-
-                    if (
-                        window.innerWidth <= 800
-                    ) {
-
-                        closeMobileMenu();
-
-                    }
-
-                }
-            );
-
-
-            friendList.appendChild(div);
+console.log(
+    "Friends Dictionary loaded successfully:",
+    friends.length
+);
