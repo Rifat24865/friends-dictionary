@@ -1,7 +1,12 @@
 /* =====================================================
    FRIENDS DICTIONARY
-   FINAL CLEAN SCRIPT
+   COMPLETE JAVASCRIPT
    46 FRIENDS
+===================================================== */
+
+
+/* =====================================================
+   FRIEND DATA
 ===================================================== */
 
 const friends = [
@@ -568,49 +573,37 @@ const friends = [
 const friendList = document.getElementById("friendList");
 const searchInput = document.getElementById("searchInput");
 const friendCount = document.getElementById("friendCount");
+const sidebarFriendCount =
+    document.getElementById("sidebarFriendCount");
 
 const profileImage = document.getElementById("profileImage");
 const profileName = document.getElementById("profileName");
 const profileGroup = document.getElementById("profileGroup");
 const profilePhone = document.getElementById("profilePhone");
-const profileProfession = document.getElementById("profileProfession");
-const profileBlood = document.getElementById("profileBlood");
-const profileAddress = document.getElementById("profileAddress");
-const profileEmail = document.getElementById("profileEmail");
+const profileProfession =
+    document.getElementById("profileProfession");
+const profileBlood =
+    document.getElementById("profileBlood");
+const profileAddress =
+    document.getElementById("profileAddress");
+const profileEmail =
+    document.getElementById("profileEmail");
 
 
 /* =====================================================
-   SHOW PROFILE
+   UPDATE FRIEND COUNT
 ===================================================== */
 
-function showProfile(friend) {
+function updateFriendCount(count) {
 
-    if (!friend) return;
+    if (friendCount) {
+        friendCount.textContent = count;
+    }
 
-    profileImage.src = friend.photo;
-    profileImage.alt = friend.name;
+    if (sidebarFriendCount) {
+        sidebarFriendCount.textContent = count;
+    }
 
-    profileImage.onerror = function () {
-        this.onerror = null;
-        this.src = "https://via.placeholder.com/300/171e28/ffffff?text=User";
-    };
-
-    profileName.textContent = friend.name;
-    profileGroup.textContent = friend.group;
-
-    profilePhone.textContent = friend.phone;
-    profilePhone.href = "tel:" + friend.phone;
-
-    profileProfession.textContent = friend.profession;
-    profileBlood.textContent = friend.blood;
-
-    profileAddress.textContent = friend.address;
-    profileAddress.href =
-        "https://www.google.com/maps/search/?api=1&query=" +
-        encodeURIComponent(friend.address);
-
-    profileEmail.textContent = friend.email;
-    profileEmail.href = "mailto:" + friend.email;
 }
 
 
@@ -620,7 +613,15 @@ function showProfile(friend) {
 
 function showFriends(list) {
 
+    if (!friendList) {
+        console.error("friendList element not found.");
+        return;
+    }
+
     friendList.innerHTML = "";
+
+    updateFriendCount(list.length);
+
 
     if (list.length === 0) {
 
@@ -638,27 +639,28 @@ function showFriends(list) {
         return;
     }
 
+
     list.forEach((friend, index) => {
 
         const div = document.createElement("div");
 
         div.className = "friend";
 
+
         if (index === 0) {
             div.classList.add("active");
         }
 
+
         div.innerHTML = `
+
             <img
                 src="${friend.photo}"
                 alt="${friend.name}"
-                onerror="
-                    this.onerror=null;
-                    this.src='https://via.placeholder.com/100/171e28/ffffff?text=User';
-                "
             >
 
             <div>
+
                 <div class="friend-name">
                     ${friend.name}
                 </div>
@@ -666,30 +668,223 @@ function showFriends(list) {
                 <div class="friend-group">
                     ${friend.group}
                 </div>
+
             </div>
+
         `;
 
-        div.addEventListener("click", function () {
 
-            document
-                .querySelectorAll(".friend")
-                .forEach(item => {
-                    item.classList.remove("active");
-                });
+        const image =
+            div.querySelector("img");
 
-            div.classList.add("active");
 
-            showProfile(friend);
+        image.addEventListener(
+            "error",
+            function () {
 
-            if (window.innerWidth <= 800) {
-                closeMobileMenu();
+                this.src =
+                    "data:image/svg+xml;charset=UTF-8," +
+                    encodeURIComponent(`
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             width="100"
+                             height="100"
+                             viewBox="0 0 100 100">
+
+                            <rect width="100"
+                                  height="100"
+                                  fill="#171e28"/>
+
+                            <text
+                                x="50"
+                                y="56"
+                                text-anchor="middle"
+                                fill="#ffffff"
+                                font-size="40">
+                                👤
+                            </text>
+
+                        </svg>
+                    `);
+
             }
+        );
 
-        });
+
+        div.addEventListener(
+            "click",
+            function () {
+
+                document
+                    .querySelectorAll(".friend")
+                    .forEach(item => {
+
+                        item.classList.remove("active");
+
+                    });
+
+
+                div.classList.add("active");
+
+
+                showProfile(friend);
+
+
+                /* Close mobile sidebar */
+
+                if (
+                    window.innerWidth <= 800
+                ) {
+
+                    closeMobileSidebar();
+
+                }
+
+            }
+        );
+
 
         friendList.appendChild(div);
 
     });
+
+}
+
+
+/* =====================================================
+   SHOW PROFILE
+===================================================== */
+
+function showProfile(friend) {
+
+    if (!friend) {
+        return;
+    }
+
+
+    /* PROFILE IMAGE */
+
+    if (profileImage) {
+
+        profileImage.src =
+            friend.photo;
+
+        profileImage.alt =
+            friend.name;
+
+
+        profileImage.onerror =
+            function () {
+
+                this.src =
+                    "data:image/svg+xml;charset=UTF-8," +
+                    encodeURIComponent(`
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             width="300"
+                             height="300"
+                             viewBox="0 0 300 300">
+
+                            <rect width="300"
+                                  height="300"
+                                  fill="#171e28"/>
+
+                            <text
+                                x="150"
+                                y="170"
+                                text-anchor="middle"
+                                fill="#ffffff"
+                                font-size="100">
+                                👤
+                            </text>
+
+                        </svg>
+                    `);
+
+            };
+
+    }
+
+
+    /* NAME */
+
+    if (profileName) {
+        profileName.textContent =
+            friend.name;
+    }
+
+
+    /* GROUP */
+
+    if (profileGroup) {
+        profileGroup.textContent =
+            friend.group;
+    }
+
+
+    /* PHONE */
+
+    if (profilePhone) {
+
+        profilePhone.textContent =
+            friend.phone;
+
+        profilePhone.href =
+            "tel:" + friend.phone;
+
+    }
+
+
+    /* PROFESSION */
+
+    if (profileProfession) {
+
+        profileProfession.textContent =
+            friend.profession;
+
+    }
+
+
+    /* BLOOD */
+
+    if (profileBlood) {
+
+        profileBlood.textContent =
+            friend.blood;
+
+    }
+
+
+    /* ADDRESS */
+
+    if (profileAddress) {
+
+        profileAddress.textContent =
+            friend.address;
+
+        profileAddress.href =
+            "https://www.google.com/maps/search/?api=1&query=" +
+            encodeURIComponent(friend.address);
+
+        profileAddress.target =
+            "_blank";
+
+        profileAddress.rel =
+            "noopener";
+
+    }
+
+
+    /* EMAIL */
+
+    if (profileEmail) {
+
+        profileEmail.textContent =
+            friend.email;
+
+        profileEmail.href =
+            "mailto:" + friend.email;
+
+    }
+
 }
 
 
@@ -697,250 +892,229 @@ function showFriends(list) {
    SEARCH
 ===================================================== */
 
-searchInput.addEventListener("input", function () {
+if (searchInput) {
 
-    const search = searchInput.value
-        .toLowerCase()
-        .trim();
+    searchInput.addEventListener(
+        "input",
+        function () {
 
-    const filtered = friends.filter(friend => {
+            const search =
+                this.value
+                    .toLowerCase()
+                    .trim();
 
-        return (
-            friend.name.toLowerCase().includes(search) ||
-            friend.group.toLowerCase().includes(search) ||
-            friend.profession.toLowerCase().includes(search) ||
-            friend.blood.toLowerCase().includes(search) ||
-            friend.address.toLowerCase().includes(search)
-        );
 
-    });
+            const filtered =
+                friends.filter(
+                    friend => {
 
-    showFriends(filtered);
+                        return (
 
-    if (filtered.length > 0) {
-        showProfile(filtered[0]);
-    }
+                            friend.name
+                                .toLowerCase()
+                                .includes(search)
 
-});
+                            ||
+
+                            friend.group
+                                .toLowerCase()
+                                .includes(search)
+
+                            ||
+
+                            friend.profession
+                                .toLowerCase()
+                                .includes(search)
+
+                            ||
+
+                            friend.blood
+                                .toLowerCase()
+                                .includes(search)
+
+                            ||
+
+                            friend.address
+                                .toLowerCase()
+                                .includes(search)
+
+                        );
+
+                    }
+                );
+
+
+            showFriends(filtered);
+
+
+            if (filtered.length > 0) {
+
+                showProfile(
+                    filtered[0]
+                );
+
+            }
+
+        }
+    );
+
+}
 
 
 /* =====================================================
-   MOBILE MENU
+   MOBILE SIDEBAR
 ===================================================== */
 
-const mobileStyle = document.createElement("style");
+const menuButton =
+    document.getElementById("menuButton");
 
-mobileStyle.textContent = `
+const sidebar =
+    document.getElementById("sidebar");
 
-.mobile-menu-button {
-    display: none;
-}
+const sidebarOverlay =
+    document.getElementById("sidebarOverlay");
 
-.mobile-overlay {
-    display: none;
-}
+const sidebarClose =
+    document.getElementById("sidebarClose");
 
-@media (max-width: 800px) {
 
-    .mobile-menu-button {
-        display: flex;
-        position: fixed;
-        top: 14px;
-        left: 14px;
-        z-index: 1001;
-        width: 45px;
-        height: 45px;
-        border: 1px solid #303b49;
-        border-radius: 12px;
-        background: #171e28;
-        color: white;
-        align-items: center;
-        justify-content: center;
-        font-size: 22px;
-        cursor: pointer;
-        box-shadow: 0 5px 20px rgba(0,0,0,.35);
+/* OPEN SIDEBAR */
+
+function openMobileSidebar() {
+
+    if (sidebar) {
+        sidebar.classList.add("open");
     }
 
-    .mobile-overlay {
-        display: block;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,.55);
-        z-index: 998;
-        opacity: 0;
-        visibility: hidden;
-        transition: .25s ease;
-    }
-
-    .mobile-overlay.show {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .sidebar {
-        position: fixed !important;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        width: 310px !important;
-        height: 100vh;
-        z-index: 999;
-        transform: translateX(-105%);
-        transition: transform .28s ease;
-        border-right: 1px solid #303844 !important;
-        border-bottom: none !important;
-        overflow: hidden;
-    }
-
-    .sidebar.mobile-open {
-        transform: translateX(0);
-    }
-
-    .sidebar .friend-list {
-        display: block !important;
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
-    }
-
-    .sidebar .friend {
-        min-width: 0 !important;
-        margin-bottom: 6px !important;
-    }
-
-    .main {
-        width: 100%;
-        max-width: none;
-        padding-top: 72px !important;
+    if (sidebarOverlay) {
+        sidebarOverlay.classList.add("show");
     }
 
 }
 
-`;
 
-document.head.appendChild(mobileStyle);
+/* CLOSE SIDEBAR */
 
+function closeMobileSidebar() {
 
-/* =====================================================
-   MOBILE MENU BUTTON
-===================================================== */
-
-const menuButton = document.createElement("button");
-
-menuButton.className = "mobile-menu-button";
-menuButton.innerHTML = "☰";
-menuButton.setAttribute(
-    "aria-label",
-    "Open friends list"
-);
-
-document.body.appendChild(menuButton);
-
-
-/* =====================================================
-   MOBILE OVERLAY
-===================================================== */
-
-const mobileOverlay = document.createElement("div");
-
-mobileOverlay.className = "mobile-overlay";
-
-document.body.appendChild(mobileOverlay);
-
-
-/* =====================================================
-   OPEN MOBILE MENU
-===================================================== */
-
-function openMobileMenu() {
-
-    const sidebar = document.querySelector(".sidebar");
-
-    if (!sidebar) return;
-
-    sidebar.classList.add("mobile-open");
-
-    mobileOverlay.classList.add("show");
-
-    menuButton.innerHTML = "✕";
-}
-
-
-/* =====================================================
-   CLOSE MOBILE MENU
-===================================================== */
-
-function closeMobileMenu() {
-
-    const sidebar = document.querySelector(".sidebar");
-
-    if (!sidebar) return;
-
-    sidebar.classList.remove("mobile-open");
-
-    mobileOverlay.classList.remove("show");
-
-    menuButton.innerHTML = "☰";
-}
-
-
-/* =====================================================
-   MENU BUTTON
-===================================================== */
-
-menuButton.addEventListener("click", function () {
-
-    const sidebar = document.querySelector(".sidebar");
-
-    if (!sidebar) return;
-
-    if (sidebar.classList.contains("mobile-open")) {
-        closeMobileMenu();
-    } else {
-        openMobileMenu();
+    if (sidebar) {
+        sidebar.classList.remove("open");
     }
 
-});
+    if (sidebarOverlay) {
+        sidebarOverlay.classList.remove("show");
+    }
+
+}
 
 
-/* =====================================================
-   OVERLAY
-===================================================== */
+/* MENU BUTTON */
 
-mobileOverlay.addEventListener(
-    "click",
-    closeMobileMenu
-);
+if (menuButton) {
+
+    menuButton.addEventListener(
+        "click",
+        openMobileSidebar
+    );
+
+}
+
+
+/* CLOSE BUTTON */
+
+if (sidebarClose) {
+
+    sidebarClose.addEventListener(
+        "click",
+        closeMobileSidebar
+    );
+
+}
+
+
+/* OVERLAY */
+
+if (sidebarOverlay) {
+
+    sidebarOverlay.addEventListener(
+        "click",
+        closeMobileSidebar
+    );
+
+}
 
 
 /* =====================================================
    WINDOW RESIZE
 ===================================================== */
 
-window.addEventListener("resize", function () {
+window.addEventListener(
+    "resize",
+    function () {
 
-    if (window.innerWidth > 800) {
-        closeMobileMenu();
+        if (
+            window.innerWidth > 800
+        ) {
+
+            closeMobileSidebar();
+
+        }
+
     }
-
-});
-
-
-/* =====================================================
-   INITIALIZE
-===================================================== */
-
-friendCount.textContent = friends.length;
-
-showFriends(friends);
-
-showProfile(friends[0]);
-
-
-/* =====================================================
-   DEBUG
-===================================================== */
-
-console.log(
-    "Friends Dictionary loaded successfully:",
-    friends.length
 );
+
+
+/* =====================================================
+   INITIALIZE APP
+===================================================== */
+
+function initializeApp() {
+
+    console.log(
+        "Friends Dictionary loaded:",
+        friends.length,
+        "friends"
+    );
+
+
+    /* Show total count */
+
+    updateFriendCount(
+        friends.length
+    );
+
+
+    /* Show all friends */
+
+    showFriends(
+        friends
+    );
+
+
+    /* Show first friend */
+
+    showProfile(
+        friends[0]
+    );
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+if (
+    document.readyState === "loading"
+) {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        initializeApp
+    );
+
+} else {
+
+    initializeApp();
+
+}
