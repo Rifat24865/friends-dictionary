@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#0b0f14">
+
+    <meta name="description"
+          content="Friends Dictionary - Offline Friends Directory">
+
+    <title>Friends Dictionary</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="style.css">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest"
+          href="manifest.json">
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+
+        <!-- LOGO -->
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                👥
+            </div>
+
+            <div>
+
+                <h1>Friends</h1>
+
+                <span>Dictionary</span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+            <span>🔍</span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search friend..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+
+        <!-- FRIEND LIST -->
+
+        <div
+            class="friend-list"
+            id="friendList">
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="main">
+
+
+        <!-- TOP BAR -->
+
+        <div class="top-bar">
+
+
+            <div>
+
+                <span class="welcome">
+                    FRIENDS DIRECTORY
+                </span>
+
+                <h2>
+                    Friend Profile
+                </h2>
+
+            </div>
+
+
+            <div class="friend-count">
+
+                <span id="friendCount">
+                    0
+                </span>
+
+                Friends
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =====================================
+             PROFILE CARD
+        ====================================== -->
+
+        <section class="profile-card">
+
+
+            <!-- PROFILE HEADER -->
+
+            <div class="profile-header">
+
+
+                <img
+                    id="profileImage"
+                    src=""
+                    alt="Friend Photo"
+                >
+
+
+                <div class="profile-name">
+
+
+                    <span class="member-label">
+                        FRIEND PROFILE
+                    </span>
+
+
+                    <h3 id="profileName">
+                        Select a friend
+                    </h3>
+
+
+                    <p id="profileGroup">
+                        Choose a friend from the list
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 FRIEND DETAILS
+            ================================== -->
+
+            <div class="details">
+
+
+                <!-- PHONE -->
+
+                <div class="detail-box">
+
+                    <span>
+                        📞
+                    </span>
+
+                    <div>
+
+                        <small>
+                            Phone
+                        </small>
+
+                        <a id="profilePhone" href="#">
+    —
+</a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PROFESSION -->
+
+                <div class="detail-box">
+
+                    <span>
+                        💼
+                    </span>
+
+                    <div>
+
+                        <small>
+                            Profession
+                        </small>
+
+                        <p id="profileProfession">
+                            —
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BLOOD GROUP -->
+
+                <div class="detail-box">
+
+                    <span>
+                        🩸
+                    </span>
+
+                    <div>
+
+                        <small>
+                            Blood Group
+                        </small>
+
+                        <p id="profileBlood">
+                            —
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ADDRESS -->
+
+                <div class="detail-box">
+
+                    <span>
+                        📍
+                    </span>
+
+                    <div>
+
+                        <small>
+                            Address
+                        </small>
+
+                        <a id="profileAddress" href="#" target="_blank">
+    —
+</a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="detail-box full">
+
+                    <span>
+                        ✉️
+                    </span>
+
+                    <div>
+
+                        <small>
+                            Email
+                        </small>
+
+                        <a id="profileEmail" href="#">
+    —
+</a>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             FOOTER
+        ====================================== -->
+
+        <footer>
+
+
+            <span>
+                Friends Dictionary
+            </span>
+
+
+            <span>
+                Offline • Made for Friends ❤️
+            </span>
+
+
+        </footer>
+
+
+    </main>
+
+
+</div>
+
+
+
+<!-- =========================================
+     MAIN JAVASCRIPT
+========================================== -->
+
+<script src="script.js"></script>
+
+
+
+<!-- =========================================
+     SERVICE WORKER / OFFLINE SUPPORT
+========================================== -->
+
+<script>
+
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", function () {
+
+        navigator.serviceWorker
+            .register("service-worker.js")
+
+            .then(function () {
+
+                console.log(
+                    "Offline support enabled"
+                );
+
+            })
+
+            .catch(function (error) {
+
+                console.log(
+                    "Service Worker error:",
+                    error
+                );
+
+            });
+
+    });
+
+}
+
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js")
+            .then(() => {
+                console.log("Friends Dictionary offline mode ready!");
+            })
+            .catch(error => {
+                console.log("Service Worker error:", error);
+            });
+    });
+}
+</script>
+
+</body>
+
+</html>
