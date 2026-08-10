@@ -1,4 +1,4 @@
-const CACHE_NAME = "friends-dictionary-v1";
+const CACHE_NAME = "friends-dictionary-v2";
 
 const FILES_TO_CACHE = [
     "./",
