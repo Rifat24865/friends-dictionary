@@ -609,31 +609,908 @@ function showFriends(list) {
 
         if (index === 0) {
             div.classList.add("active");
-        }
+/* =====================================================
+   FRIENDS DICTIONARY
+   FINAL SCRIPT
+   46 FRIENDS + MOBILE FRIEND MENU
+===================================================== */
 
-        div.innerHTML = `
-            <img
-                src="${friend.photo}"
-                alt="${friend.name}"
-                onerror="this.src='https://via.placeholder.com/100/171e28/ffffff?text=User'"
-            >
 
-            <div>
-                <div class="friend-name">${friend.name}</div>
-                <div class="friend-group">${friend.group}</div>
+/* =====================================================
+   FRIEND DATA
+===================================================== */
+
+const friends = [
+
+    {
+        id: 1,
+        name: "Mohammad Rifat Hossain",
+        group: "Humanities",
+        phone: "+8801835851551",
+        profession: "Private job",
+        blood: "A+",
+        address: "Chattogram",
+        email: "rifathossain1432015@gmail.com",
+        photo: "images/01.jpg"
+    },
+
+    {
+        id: 2,
+        name: "Dipto Das",
+        group: "Business studies",
+        phone: "+8801648155850",
+        profession: "Teacher",
+        blood: "B+",
+        address: "Baliga,Kaliganj, Gazipur",
+        email: "Diptodas2468@gmail.com",
+        photo: "images/02.jpg"
+    },
+
+    {
+        id: 3,
+        name: "Parbaz Hossain",
+        group: "Science",
+        phone: "+8801740658882",
+        profession: "Software Engineer",
+        blood: "O+",
+        address: "Chowra, Kaliganj, Gazipur",
+        email: "md.parvezcse@gmail.com",
+        photo: "images/03.jpg"
+    },
+
+    {
+        id: 4,
+        name: "Parvej Ahmed",
+        group: "Science",
+        phone: "+8801683259371",
+        profession: "Doctor",
+        blood: "B+",
+        address: "Cumilla, Bangladesh",
+        email: "drparvejahamedhridoy@gmail.com",
+        photo: "images/04.jpg"
+    },
+
+    {
+        id: 5,
+        name: "Ali Al Rafu Omit",
+        group: "Business studies",
+        phone: "+8801778188445",
+        profession: "Business",
+        blood: "A+",
+        address: "Kaliganj, Gazipur",
+        email: "amit.rafu@gmail.com",
+        photo: "images/05.jpg"
+    },
+
+    {
+        id: 6,
+        name: "Shakil Ahmed",
+        group: "Humanities",
+        phone: "+8801929769941",
+        profession: "Pharmacy",
+        blood: "A+",
+        address: "Baranagar Kaliganj Gazipur",
+        email: "niloyshakil010@gmail.com",
+        photo: "images/06.jpg"
+    },
+
+    {
+        id: 7,
+        name: "Md Gelman Miah",
+        group: "Business studies",
+        phone: "+8801939871905",
+        profession: "Private job",
+        blood: "AB+",
+        address: "North Badda, Dhaka",
+        email: "gelmanmurad796@gmail.com",
+        photo: "images/07.jpg"
+    },
+
+    {
+        id: 8,
+        name: "Md Pavel",
+        group: "Business studies",
+        phone: "+8801627950452",
+        profession: "Teachering",
+        blood: "B+",
+        address: "Islampara, Danga,palash,Narsingdi",
+        email: "pabelmiah544@gmail.com",
+        photo: "images/08.jpg"
+    },
+
+    {
+        id: 9,
+        name: "Wahid Hasan",
+        group: "Business studies",
+        phone: "+8801756850500",
+        profession: "Business",
+        blood: "A+",
+        address: "Dhaka",
+        email: "hasanoahied@gmail.com",
+        photo: "images/09.jpg"
+    },
+
+    {
+        id: 10,
+        name: "Roman",
+        group: "Humanities",
+        phone: "+8801890337568",
+        profession: "Job",
+        blood: "O+",
+        address: "Baligaon, Kaliganj",
+        email: "r01581081377@gmail.com",
+        photo: "images/10.jpg"
+    },
+
+    {
+        id: 11,
+        name: "Kazi Ashrafuz/zaman",
+        group: "Business studies",
+        phone: "+8801827827392",
+        profession: "Banker",
+        blood: "O+",
+        address: "chowra, kaliganj",
+        email: "kazi.rocky99@gmail.com",
+        photo: "images/11.jpg"
+    },
+
+    {
+        id: 12,
+        name: "Hasibul Islam Shanto",
+        group: "Science",
+        phone: "+8801709820521",
+        profession: "Private Job",
+        blood: "O+",
+        address: "Bhora chakidarbari, Hazibug, Gazipur sadar",
+        email: "shanto.ipe.pau@gmail.com",
+        photo: "images/12.jpg"
+    },
+
+    {
+        id: 13,
+        name: "Tarek Hasan",
+        group: "Business studies",
+        phone: "+8801628968571",
+        profession: "Government employee",
+        blood: "AB+",
+        address: "Village: Baligaon, Thana: Kaliganj, District: Gazipur",
+        email: "tarek.hasan8571@gmail.com",
+        photo: "images/13.jpg"
+    },
+
+    {
+        id: 14,
+        name: "MOHAMMAD JUNAET HOSSAIN",
+        group: "Humanities",
+        phone: "+8801934494948",
+        profession: "Service Holder",
+        blood: "AB+",
+        address: "Danga, polash, Narsingdi",
+        email: "mdjunayedhossain74162@gmail.com",
+        photo: "images/14.jpg"
+    },
+
+    {
+        id: 15,
+        name: "Nafiz Mehmud Khan",
+        group: "Science",
+        phone: "+8801789683125",
+        profession: "Government Employee",
+        blood: "B+",
+        address: "Mohammadpur, Dhaka",
+        email: "nafizbjri26@gmail.com",
+        photo: "images/15.jpg"
+    },
+
+    {
+        id: 16,
+        name: "Md Sahadat Hossain",
+        group: "Science",
+        phone: "+8801302606949",
+        profession: "IT",
+        blood: "A+",
+        address: "Shopnokunjo 8D, Matikata, Cantonment, Dhaka-1206",
+        email: "sahadatsagor1047@gmail.com",
+        photo: "images/16.jpg"
+    },
+
+    {
+        id: 17,
+        name: "Fahim kaka",
+        group: "Business studies",
+        phone: "+8801851141140",
+        profession: "Business",
+        blood: "B-",
+        address: "Dorishom, Kaligank",
+        email: "fahimdk39@gmail.com",
+        photo: "images/17.jpg"
+    },
+
+    {
+        id: 18,
+        name: "Mohammad Mahbub Hossain",
+        group: "Business studies",
+        phone: "+8801903235529",
+        profession: "Job",
+        blood: "B+",
+        address: "Islampara, Danga, Palash, Narshigdi",
+        email: "mahbubhossain19953@gmail.com",
+        photo: "images/18.jpg"
+    },
+
+    {
+        id: 19,
+        name: "Mohammad Limon Bhuyean",
+        group: "Humanities",
+        phone: "+8801910534595",
+        profession: "Teacher",
+        blood: "AB+",
+        address: "Firinda, Kaliganj, Gazipur",
+        email: "md4202213@gmail.com",
+        photo: "images/19.jpg"
+    },
+
+    {
+        id: 20,
+        name: "Shaikat Ahmed Riyadh",
+        group: "Business studies",
+        phone: "+8801918840107",
+        profession: "Banker",
+        blood: "B+",
+        address: "Shakhipur, Tangail",
+        email: "msoiket34@gmail.com",
+        photo: "images/20.jpg"
+    },
+
+    {
+        id: 21,
+        name: "Masud Rana",
+        group: "Business studies",
+        phone: "+8801720960899",
+        profession: "IE officer (Industrial Engineering and Planning)",
+        blood: "A+",
+        address: "Dakhin Bhadarty, Kaliganj, Gazipur",
+        email: "masudrana20483@gmail.com",
+        photo: "images/21.jpg"
+    },
+
+    {
+        id: 22,
+        name: "TUSHER SINGHA",
+        group: "Science",
+        phone: "+8801679884948",
+        profession: "Job",
+        blood: "B+",
+        address: "Dhaka, Dhanmondi",
+        email: "tushersingh43@gmail.com",
+        photo: "images/22.jpg"
+    },
+
+    {
+        id: 23,
+        name: "Mohammad benzir Ahammed",
+        group: "Business studies",
+        phone: "+8801601635984",
+        profession: "Job",
+        blood: "O+",
+        address: "Durbati",
+        email: "mohammadbenzir@gmail.com",
+        photo: "images/23.jpg"
+    },
+
+    {
+        id: 24,
+        name: "Faiaz Ahamed Raihan",
+        group: "Science",
+        phone: "+8801688220410",
+        profession: "Private Job",
+        blood: "B+",
+        address: "Munshiganj",
+        email: "mdfaiazraihan@gmail.com",
+        photo: "images/24.jpg"
+    },
+
+    {
+        id: 25,
+        name: "Mohammad Al-Amin Miah",
+        group: "Science",
+        phone: "+8801757570882",
+        profession: "Job Holder",
+        blood: "A+",
+        address: "Islampra, Danga Bazar, Palash, Narsingdi",
+        email: "alaminmd8877@gmail.com",
+        photo: "images/25.jpg"
+    },
+
+    {
+        id: 26,
+        name: "Mostofa Kaiser",
+        group: "Science",
+        phone: "+8801743136666",
+        profession: "IT Specialist",
+        blood: "B+",
+        address: "GA, USA",
+        email: "makaiser14@hotmail.com",
+        photo: "images/26.jpg"
+    },
+
+    {
+        id: 27,
+        name: "Habibur Rahman",
+        group: "Business studies",
+        phone: "+8801311761051",
+        profession: "Salse superviser Bkash",
+        blood: "A+",
+        address: "Vill:Dokkhin shom, po:shom noton bazar,ps:kaligonj, zila:Gazipur",
+        email: "jabibur.rahman.mridha951@gmail.com",
+        photo: "images/27.jpg"
+    },
+
+    {
+        id: 28,
+        name: "Md Tanvir Hossain",
+        group: "Science",
+        phone: "+8801724261854",
+        profession: "Job",
+        blood: "B+",
+        address: "Kajirchar,danga,palash,narshingdi",
+        email: "tanvir19106@gmail.com",
+        photo: "images/28.jpg"
+    },
+
+    {
+        id: 29,
+        name: "Md Rubel Miah",
+        group: "Humanities",
+        phone: "+8801309090022",
+        profession: "Business",
+        blood: "O+",
+        address: "Kazirchar, Danga, Palash, Narsingdi",
+        email: "mdakashahmedo580@gmail.com",
+        photo: "images/29.jpg"
+    },
+
+    {
+        id: 30,
+        name: "MOHAMMAD ABDULLAH",
+        group: "Business studies",
+        phone: "+8801686343494",
+        profession: "Accounts Officer (Quality Feeds Ltd.)",
+        blood: "B+",
+        address: "Velanagar, Narsingdi Sadar, Narsingdi-1602, Dhaka.",
+        email: "abdullah.acn365@gmail.com",
+        photo: "images/30.jpg"
+    },
+
+    {
+        id: 31,
+        name: "Jahid Sarker",
+        group: "Science",
+        phone: "+8801783516315",
+        profession: "Business",
+        blood: "B+",
+        address: "Galimpur, Danga, Palash",
+        email: "jahidsarker399@gmail.com",
+        photo: "images/31.jpg"
+    },
+
+    {
+        id: 32,
+        name: "Mohammad Sarwarul Haque Munna",
+        group: "Science",
+        phone: "+8801782440444",
+        profession: "Engineer",
+        blood: "A+",
+        address: "Golabari, Kaliganj, Gazipur",
+        email: "sarwarulmunna6@gmail.com",
+        photo: "images/32.jpg"
+    },
+
+    {
+        id: 33,
+        name: "Abdullah al mamun",
+        group: "Business studies",
+        phone: "+8801754690470",
+        profession: "Job",
+        blood: "O+",
+        address: "Kaliganj, Baranagor",
+        email: "am8937412@gmail.com",
+        photo: "images/33.jpg"
+    },
+
+    {
+        id: 34,
+        name: "Rijwanui Ahmed ( shuvo)",
+        group: "Business studies",
+        phone: "+8801682830660",
+        profession: "Audit officer",
+        blood: "A+",
+        address: "Vhaderty, Kaliganj, Gazipur",
+        email: "shuvo.ahmed3827@gmail.com",
+        photo: "images/34.jpg"
+    },
+
+    {
+        id: 35,
+        name: "Chinibash singha",
+        group: "Business studies",
+        phone: "+8801774064847",
+        profession: "Medical Information Officer",
+        blood: "O+",
+        address: "Chowra naya bari kaliganj,Gazipur,Dhaka.",
+        email: "chinibashsingha@gmali.com",
+        photo: "images/35.jpg"
+    },
+
+    {
+        id: 36,
+        name: "Md zahirul islam",
+        group: "Business studies",
+        phone: "+966536264792",
+        profession: "Marketing",
+        blood: "O+",
+        address: "Saudi arabia",
+        email: "mzahirul266@gmail.com",
+        photo: "images/36.jpg"
+    },
+
+    {
+        id: 37,
+        name: "Sadik Sheikh",
+        group: "Humanities",
+        phone: "+8801714662628",
+        profession: "Business",
+        blood: "B+",
+        address: "Kajirchar,Danga,Palash,Narsingdi",
+        email: "sheikhsadik023@gmail.com",
+        photo: "images/37.jpg"
+    },
+
+    {
+        id: 38,
+        name: "Abdus Salam",
+        group: "Science",
+        phone: "+8801993522542",
+        profession: "Teaching",
+        blood: "AB+",
+        address: "Chandaya, kaligonj,Gazipur",
+        email: "abdussalam88225@gmail.com",
+        photo: "images/38.jpg"
+    },
+
+    {
+        id: 39,
+        name: "Md.Rajib Miah",
+        group: "Business studies",
+        phone: "+8801727360129",
+        profession: "Business",
+        blood: "A+",
+        address: "Kazair. Danga.polash.Narsingdi",
+        email: "raijb27360@gmail.com",
+        photo: "images/39.jpg"
+    },
+
+    {
+        id: 40,
+        name: "Mohammad Alimul Hossain",
+        group: "Business studies",
+        phone: "+8801688123498",
+        profession: "Jobholder",
+        blood: "O+",
+        address: "Vill: Baligaon. Kaliganj,Gazipur.",
+        email: "gmalimulbhuiya@gmail.com",
+        photo: "images/40.jpg"
+    },
+
+    {
+        id: 41,
+        name: "Mohammad Al-Amin Hossain",
+        group: "Science",
+        phone: "+00000000000",
+        profession: "Student",
+        blood: "A+",
+        address: "Romford, London, UK",
+        email: "livon.alamin@gmail.com",
+        photo: "images/41.jpg"
+    },
+
+    {
+        id: 42,
+        name: "Mehedi Hasan Shaown",
+        group: "Business studies",
+        phone: "+8801614326490",
+        profession: "Job",
+        blood: "O+",
+        address: "Kaliganj, Gazipur",
+        email: "mehedihasanshaon376@gmail.com",
+        photo: "images/42.jpg"
+    },
+
+    {
+        id: 43,
+        name: "Mustakin Shourov",
+        group: "Business studies",
+        phone: "+8801674466596",
+        profession: "Job holder",
+        blood: "O+",
+        address: "Kaliganj",
+        email: "mustakin.hossain596@gmail.com",
+        photo: "images/43.jpg"
+    },
+
+    {
+        id: 44,
+        name: "Azlan Sha Tushar",
+        group: "Business studies",
+        phone: "+8801745023602",
+        profession: "Job",
+        blood: "AB+",
+        address: "Mirpur",
+        email: "azlantushar1@gmail.com",
+        photo: "images/44.jpg"
+    },
+
+    {
+        id: 45,
+        name: "Asaduzzaman (Shaon)",
+        group: "Science",
+        phone: "+8801866305002",
+        profession: "Private Job",
+        blood: "B+",
+        address: "Kaliganj, Gazipur",
+        email: "shaontex5@gmail.com",
+        photo: "images/45.jpg"
+    },
+
+    {
+        id: 46,
+        name: "SHOVEN RANJAN DAS",
+        group: "Science",
+        phone: "+8801400045920",
+        profession: "Government Employee",
+        blood: "B+",
+        address: "Kaliganj, Gazipur",
+        email: "ranjandasshoven@gmail.com",
+        photo: "images/46.jpg"
+    }
+
+];
+
+
+/* =====================================================
+   HTML ELEMENTS
+===================================================== */
+
+const friendList = document.getElementById("friendList");
+const searchInput = document.getElementById("searchInput");
+const friendCount = document.getElementById("friendCount");
+
+const profileImage = document.getElementById("profileImage");
+const profileName = document.getElementById("profileName");
+const profileGroup = document.getElementById("profileGroup");
+const profilePhone = document.getElementById("profilePhone");
+const profileProfession = document.getElementById("profileProfession");
+const profileBlood = document.getElementById("profileBlood");
+const profileAddress = document.getElementById("profileAddress");
+const profileEmail = document.getElementById("profileEmail");
+
+
+/* =====================================================
+   MOBILE MENU STYLE
+===================================================== */
+
+const mobileStyle = document.createElement("style");
+
+mobileStyle.textContent = `
+
+.mobile-menu-button {
+    display: none;
+}
+
+.mobile-overlay {
+    display: none;
+}
+
+@media (max-width: 800px) {
+
+    .mobile-menu-button {
+        display: flex;
+        position: fixed;
+        top: 14px;
+        left: 14px;
+        z-index: 1001;
+        width: 45px;
+        height: 45px;
+        border: 1px solid #303b49;
+        border-radius: 12px;
+        background: #171e28;
+        color: white;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        cursor: pointer;
+        box-shadow: 0 5px 20px rgba(0,0,0,.35);
+    }
+
+    .mobile-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.55);
+        z-index: 998;
+        opacity: 0;
+        visibility: hidden;
+        transition: .25s ease;
+    }
+
+    .mobile-overlay.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .sidebar {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 310px !important;
+        height: 100vh;
+        z-index: 999;
+        transform: translateX(-105%);
+        transition: transform .28s ease;
+        border-right: 1px solid #303844 !important;
+        border-bottom: none !important;
+        overflow: hidden;
+    }
+
+    .sidebar.mobile-open {
+        transform: translateX(0);
+    }
+
+    .sidebar .friend-list {
+        display: block !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+
+    .sidebar .friend {
+        min-width: 0 !important;
+        margin-bottom: 6px !important;
+    }
+
+    .main {
+        width: 100%;
+        max-width: none;
+        padding-top: 72px !important;
+    }
+
+    .top-bar {
+        padding-left: 5px;
+    }
+
+    .mobile-menu-title {
+        display: block;
+        margin-bottom: 15px;
+        color: #8d98a6;
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+}
+
+@media (min-width: 801px) {
+    .mobile-menu-title {
+        display: none;
+    }
+}
+
+`;
+
+document.head.appendChild(mobileStyle);
+
+
+/* =====================================================
+   MOBILE MENU BUTTON
+===================================================== */
+
+const menuButton = document.createElement("button");
+
+menuButton.className = "mobile-menu-button";
+menuButton.innerHTML = "☰";
+menuButton.setAttribute("aria-label", "Open friends list");
+
+document.body.appendChild(menuButton);
+
+
+/* =====================================================
+   MOBILE OVERLAY
+===================================================== */
+
+const mobileOverlay = document.createElement("div");
+
+mobileOverlay.className = "mobile-overlay";
+
+document.body.appendChild(mobileOverlay);
+
+
+/* =====================================================
+   MOBILE MENU TITLE
+===================================================== */
+
+const menuTitle = document.createElement("div");
+
+menuTitle.className = "mobile-menu-title";
+menuTitle.textContent = "FRIENDS LIST";
+
+friendList.parentElement.insertBefore(
+    menuTitle,
+    friendList
+);
+
+
+/* =====================================================
+   OPEN MOBILE MENU
+===================================================== */
+
+function openMobileMenu() {
+
+    document.querySelector(".sidebar")
+        .classList.add("mobile-open");
+
+    mobileOverlay.classList.add("show");
+
+    menuButton.innerHTML = "✕";
+}
+
+
+/* =====================================================
+   CLOSE MOBILE MENU
+===================================================== */
+
+function closeMobileMenu() {
+
+    document.querySelector(".sidebar")
+        .classList.remove("mobile-open");
+
+    mobileOverlay.classList.remove("show");
+
+    menuButton.innerHTML = "☰";
+}
+
+
+/* =====================================================
+   MENU BUTTON CLICK
+===================================================== */
+
+menuButton.addEventListener("click", () => {
+
+    const sidebar =
+        document.querySelector(".sidebar");
+
+    if (sidebar.classList.contains("mobile-open")) {
+
+        closeMobileMenu();
+
+    } else {
+
+        openMobileMenu();
+
+    }
+
+});
+
+
+/* =====================================================
+   OVERLAY CLICK
+===================================================== */
+
+mobileOverlay.addEventListener(
+    "click",
+    closeMobileMenu
+);
+
+
+/* =====================================================
+   SHOW FRIEND LIST
+===================================================== */
+
+function showFriends(list) {
+
+    friendList.innerHTML = "";
+
+    if (list.length === 0) {
+
+        friendList.innerHTML = `
+            <div style="
+                color:#687482;
+                padding:20px 10px;
+                text-align:center;
+                font-size:13px;
+            ">
+                No friend found
             </div>
         `;
 
-        div.addEventListener("click", () => {
+        return;
+    }
 
-            document.querySelectorAll(".friend").forEach(item => {
-                item.classList.remove("active");
-            });
+
+    list.forEach((friend, index) => {
+
+        const div =
+            document.createElement("div");
+
+        div.className = "friend";
+
+
+        if (index === 0) {
 
             div.classList.add("active");
 
-            showProfile(friend);
-        });
+        }
+
+
+        div.innerHTML = `
+
+            <img
+                src="${friend.photo}"
+                alt="${friend.name}"
+                onerror="
+                    this.src='https://via.placeholder.com/100/171e28/ffffff?text=User'
+                "
+            >
+
+            <div>
+
+                <div class="friend-name">
+                    ${friend.name}
+                </div>
+
+                <div class="friend-group">
+                    ${friend.group}
+                </div>
+
+            </div>
+
+        `;
+
+
+        div.addEventListener(
+            "click",
+            () => {
+
+                document
+                    .querySelectorAll(".friend")
+                    .forEach(item => {
+
+                        item.classList.remove(
+                            "active"
+                        );
+
+                    });
+
+
+                div.classList.add("active");
+
+
+                showProfile(friend);
+
+
+                /*
+                   Mobile হলে friend select করার
+                   পর automatically menu বন্ধ হবে।
+                */
+
+                if (
+                    window.innerWidth <= 800
+                ) {
+
+                    closeMobileMenu();
+
+                }
+
+            }
+        );
+
 
         friendList.appendChild(div);
 
@@ -648,32 +1525,64 @@ function showFriends(list) {
 
 function showProfile(friend) {
 
-    profileImage.src = friend.photo;
+    profileImage.src =
+        friend.photo;
 
-    profileImage.onerror = function () {
-        this.src =
-            "https://via.placeholder.com/300/171e28/ffffff?text=User";
-    };
 
-    profileImage.alt = friend.name;
+    profileImage.onerror =
+        function () {
 
-    profileName.textContent = friend.name;
-    profileGroup.textContent = friend.group;
+            this.src =
+                "https://via.placeholder.com/300/171e28/ffffff?text=User";
 
-    profilePhone.textContent = friend.phone;
-    profilePhone.href = "tel:" + friend.phone;
+        };
 
-    profileProfession.textContent = friend.profession;
-    profileBlood.textContent = friend.blood;
 
-    profileAddress.textContent = friend.address;
+    profileImage.alt =
+        friend.name;
+
+
+    profileName.textContent =
+        friend.name;
+
+
+    profileGroup.textContent =
+        friend.group;
+
+
+    profilePhone.textContent =
+        friend.phone;
+
+
+    profilePhone.href =
+        "tel:" + friend.phone;
+
+
+    profileProfession.textContent =
+        friend.profession;
+
+
+    profileBlood.textContent =
+        friend.blood;
+
+
+    profileAddress.textContent =
+        friend.address;
+
 
     profileAddress.href =
         "https://www.google.com/maps/search/?api=1&query=" +
-        encodeURIComponent(friend.address);
+        encodeURIComponent(
+            friend.address
+        );
 
-    profileEmail.textContent = friend.email;
-    profileEmail.href = "mailto:" + friend.email;
+
+    profileEmail.textContent =
+        friend.email;
+
+
+    profileEmail.href =
+        "mailto:" + friend.email;
 
 }
 
@@ -682,35 +1591,94 @@ function showProfile(friend) {
    SEARCH
 ===================================================== */
 
-searchInput.addEventListener("input", () => {
+searchInput.addEventListener(
+    "input",
+    () => {
 
-    const search = searchInput.value.toLowerCase().trim();
+        const search =
+            searchInput.value
+                .toLowerCase()
+                .trim();
 
-    const filtered = friends.filter(friend => {
 
-        return (
-            friend.name.toLowerCase().includes(search) ||
-            friend.group.toLowerCase().includes(search) ||
-            friend.profession.toLowerCase().includes(search) ||
-            friend.blood.toLowerCase().includes(search)
-        );
+        const filtered =
+            friends.filter(
+                friend => {
 
-    });
+                    return (
 
-    showFriends(filtered);
+                        friend.name
+                            .toLowerCase()
+                            .includes(search)
 
-    if (filtered.length > 0) {
-        showProfile(filtered[0]);
+                        ||
+
+                        friend.group
+                            .toLowerCase()
+                            .includes(search)
+
+                        ||
+
+                        friend.profession
+                            .toLowerCase()
+                            .includes(search)
+
+                        ||
+
+                        friend.blood
+                            .toLowerCase()
+                            .includes(search)
+
+                    );
+
+                }
+            );
+
+
+        showFriends(filtered);
+
+
+        if (filtered.length > 0) {
+
+            showProfile(
+                filtered[0]
+            );
+
+        }
+
     }
-
-});
+);
 
 
 /* =====================================================
    INITIALIZE
 ===================================================== */
 
-friendCount.textContent = friends.length;
+friendCount.textContent =
+    friends.length;
+
 
 showFriends(friends);
-showProfile(friends[0]);
+
+
+showProfile(
+    friends[0]
+);
+
+
+/* =====================================================
+   MOBILE BACK BUTTON
+===================================================== */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        if (window.innerWidth > 800) {
+
+            closeMobileMenu();
+
+        }
+
+    }
+);
