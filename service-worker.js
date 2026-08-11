@@ -1,78 +1,66 @@
 const CACHE_NAME = "friends-dictionary-v2";
 
 const FILES_TO_CACHE = [
-    "./",
-    "./index.html",
-    "./style.css",
-    "./script.js",
-    "./manifest.json"
+  "/friends-dictionary/",
+  "/friends-dictionary/index.html",
+  "/friends-dictionary/style.css",
+  "/friends-dictionary/script.js",
+  "/friends-dictionary/manifest.json",
+  "/friends-dictionary/images/icon-192.png",
+  "/friends-dictionary/images/icon-512.png"
 ];
-
-
-/* INSTALL */
 
 self.addEventListener("install", event => {
 
-    event.waitUntil(
-
-        caches.open(CACHE_NAME)
-            .then(cache => {
-
-                return cache.addAll(FILES_TO_CACHE);
-
-            })
-
-    );
-
-    self.skipWaiting();
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(FILES_TO_CACHE))
+      .then(() => self.skipWaiting())
+  );
 
 });
 
-
-/* ACTIVATE */
 
 self.addEventListener("activate", event => {
 
-    event.waitUntil(
+  event.waitUntil(
 
-        caches.keys().then(keys => {
+    caches.keys().then(keys => {
 
-            return Promise.all(
+      return Promise.all(
 
-                keys
-                    .filter(key => key !== CACHE_NAME)
-                    .map(key => caches.delete(key))
+        keys.map(key => {
 
-            );
+          if (key !== CACHE_NAME) {
+            return caches.delete(key);
+          }
 
         })
 
-    );
+      );
 
-    self.clients.claim();
+    }).then(() => self.clients.claim())
+
+  );
 
 });
 
 
-/* FETCH */
-
 self.addEventListener("fetch", event => {
 
-    event.respondWith(
+  event.respondWith(
 
-        caches.match(event.request)
-            .then(cachedResponse => {
+    caches.match(event.request)
+      .then(cachedResponse => {
 
-                if (cachedResponse) {
+        if (cachedResponse) {
+          return cachedResponse;
+        }
 
-                    return cachedResponse;
+        return fetch(event.request);
 
-                }
+      })
 
-                return fetch(event.request);
-
-            })
-
-    );
+  );
 
 });
