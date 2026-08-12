@@ -570,22 +570,39 @@ const friends = [
    HTML ELEMENTS
 ===================================================== */
 
-const friendList = document.getElementById("friendList");
-const searchInput = document.getElementById("searchInput");
-const friendCount = document.getElementById("friendCount");
+const friendList =
+    document.getElementById("friendList");
+
+const searchInput =
+    document.getElementById("searchInput");
+
+const friendCount =
+    document.getElementById("friendCount");
+
 const sidebarFriendCount =
     document.getElementById("sidebarFriendCount");
 
-const profileImage = document.getElementById("profileImage");
-const profileName = document.getElementById("profileName");
-const profileGroup = document.getElementById("profileGroup");
-const profilePhone = document.getElementById("profilePhone");
+const profileImage =
+    document.getElementById("profileImage");
+
+const profileName =
+    document.getElementById("profileName");
+
+const profileGroup =
+    document.getElementById("profileGroup");
+
+const profilePhone =
+    document.getElementById("profilePhone");
+
 const profileProfession =
     document.getElementById("profileProfession");
+
 const profileBlood =
     document.getElementById("profileBlood");
+
 const profileAddress =
     document.getElementById("profileAddress");
+
 const profileEmail =
     document.getElementById("profileEmail");
 
@@ -642,7 +659,8 @@ function showFriends(list) {
 
     list.forEach((friend, index) => {
 
-        const div = document.createElement("div");
+        const div =
+            document.createElement("div");
 
         div.className = "friend";
 
@@ -674,9 +692,10 @@ function showFriends(list) {
         `;
 
 
+        /* IMAGE FALLBACK */
+
         const image =
             div.querySelector("img");
-
 
         image.addEventListener(
             "error",
@@ -685,14 +704,16 @@ function showFriends(list) {
                 this.src =
                     "data:image/svg+xml;charset=UTF-8," +
                     encodeURIComponent(`
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             width="100"
-                             height="100"
-                             viewBox="0 0 100 100">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="100"
+                            height="100"
+                            viewBox="0 0 100 100">
 
-                            <rect width="100"
-                                  height="100"
-                                  fill="#171e28"/>
+                            <rect
+                                width="100"
+                                height="100"
+                                fill="#171e28"/>
 
                             <text
                                 x="50"
@@ -710,6 +731,8 @@ function showFriends(list) {
         );
 
 
+        /* FRIEND CLICK */
+
         div.addEventListener(
             "click",
             function () {
@@ -718,18 +741,19 @@ function showFriends(list) {
                     .querySelectorAll(".friend")
                     .forEach(item => {
 
-                        item.classList.remove("active");
+                        item.classList.remove(
+                            "active"
+                        );
 
                     });
 
 
                 div.classList.add("active");
 
-
                 showProfile(friend);
 
 
-                /* Close mobile sidebar */
+                /* Mobile sidebar close */
 
                 if (
                     window.innerWidth <= 800
@@ -778,14 +802,16 @@ function showProfile(friend) {
                 this.src =
                     "data:image/svg+xml;charset=UTF-8," +
                     encodeURIComponent(`
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             width="300"
-                             height="300"
-                             viewBox="0 0 300 300">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="300"
+                            height="300"
+                            viewBox="0 0 300 300">
 
-                            <rect width="300"
-                                  height="300"
-                                  fill="#171e28"/>
+                            <rect
+                                width="300"
+                                height="300"
+                                fill="#171e28"/>
 
                             <text
                                 x="150"
@@ -807,16 +833,20 @@ function showProfile(friend) {
     /* NAME */
 
     if (profileName) {
+
         profileName.textContent =
             friend.name;
+
     }
 
 
     /* GROUP */
 
     if (profileGroup) {
+
         profileGroup.textContent =
             friend.group;
+
     }
 
 
@@ -862,7 +892,9 @@ function showProfile(friend) {
 
         profileAddress.href =
             "https://www.google.com/maps/search/?api=1&query=" +
-            encodeURIComponent(friend.address);
+            encodeURIComponent(
+                friend.address
+            );
 
         profileAddress.target =
             "_blank";
@@ -882,6 +914,26 @@ function showProfile(friend) {
 
         profileEmail.href =
             "mailto:" + friend.email;
+
+    }
+
+
+    /* Profile animation */
+
+    const card =
+        document.querySelector(".profile-card");
+
+    if (card) {
+
+        card.classList.remove(
+            "profile-refresh"
+        );
+
+        void card.offsetWidth;
+
+        card.classList.add(
+            "profile-refresh"
+        );
 
     }
 
@@ -947,7 +999,9 @@ if (searchInput) {
             showFriends(filtered);
 
 
-            if (filtered.length > 0) {
+            if (
+                filtered.length > 0
+            ) {
 
                 showProfile(
                     filtered[0]
@@ -972,80 +1026,153 @@ const sidebar =
     document.getElementById("sidebar");
 
 const sidebarOverlay =
-    document.getElementById("sidebarOverlay");
+    document.getElementById(
+        "sidebarOverlay"
+    );
 
-const sidebarClose =
-    document.getElementById("sidebarClose");
 
-
-/* OPEN SIDEBAR */
+/* =====================================================
+   OPEN SIDEBAR
+===================================================== */
 
 function openMobileSidebar() {
 
     if (sidebar) {
-        sidebar.classList.add("open");
+
+        sidebar.classList.add(
+            "open"
+        );
+
     }
+
 
     if (sidebarOverlay) {
-        sidebarOverlay.classList.add("show");
+
+        sidebarOverlay.classList.add(
+            "show"
+        );
+
     }
 
-}
 
-
-/* CLOSE SIDEBAR */
-
-function closeMobileSidebar() {
-
-    if (sidebar) {
-        sidebar.classList.remove("open");
-    }
-
-    if (sidebarOverlay) {
-        sidebarOverlay.classList.remove("show");
-    }
-
-}
-
-
-/* MENU BUTTON */
-
-if (menuButton) {
-
-    menuButton.addEventListener(
-        "click",
-        openMobileSidebar
-    );
-
-}
-
-
-/* CLOSE BUTTON */
-
-if (sidebarClose) {
-
-    sidebarClose.addEventListener(
-        "click",
-        closeMobileSidebar
-    );
-
-}
-
-
-/* OVERLAY */
-
-if (sidebarOverlay) {
-
-    sidebarOverlay.addEventListener(
-        "click",
-        closeMobileSidebar
+    document.body.classList.add(
+        "menu-open"
     );
 
 }
 
 
 /* =====================================================
-   WINDOW RESIZE
+   CLOSE SIDEBAR
+===================================================== */
+
+function closeMobileSidebar() {
+
+    if (sidebar) {
+
+        sidebar.classList.remove(
+            "open"
+        );
+
+    }
+
+
+    if (sidebarOverlay) {
+
+        sidebarOverlay.classList.remove(
+            "show"
+        );
+
+    }
+
+
+    document.body.classList.remove(
+        "menu-open"
+    );
+
+}
+
+
+/* =====================================================
+   TOGGLE SIDEBAR
+   SAME 3-DOT BUTTON:
+   OPEN + CLOSE
+===================================================== */
+
+if (menuButton) {
+
+    menuButton.addEventListener(
+        "click",
+        function (event) {
+
+            event.stopPropagation();
+
+
+            if (
+                sidebar &&
+                sidebar.classList.contains(
+                    "open"
+                )
+            ) {
+
+                closeMobileSidebar();
+
+            } else {
+
+                openMobileSidebar();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   OUTSIDE TAP → CLOSE
+===================================================== */
+
+if (sidebarOverlay) {
+
+    sidebarOverlay.addEventListener(
+        "click",
+        function () {
+
+            closeMobileSidebar();
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   FRIEND SELECT → CLOSE MOBILE SIDEBAR
+===================================================== */
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            event.target.closest(".friend") &&
+            window.innerWidth <= 800
+        ) {
+
+            setTimeout(
+                closeMobileSidebar,
+                100
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   RESIZE
 ===================================================== */
 
 window.addEventListener(
@@ -1077,21 +1204,15 @@ function initializeApp() {
     );
 
 
-    /* Show total count */
-
     updateFriendCount(
         friends.length
     );
 
 
-    /* Show all friends */
-
     showFriends(
         friends
     );
 
-
-    /* Show first friend */
 
     showProfile(
         friends[0]
@@ -1101,11 +1222,12 @@ function initializeApp() {
 
 
 /* =====================================================
-   START
+   START APP
 ===================================================== */
 
 if (
-    document.readyState === "loading"
+    document.readyState ===
+    "loading"
 ) {
 
     document.addEventListener(
