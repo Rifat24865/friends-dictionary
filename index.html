@@ -104,18 +104,6 @@
             </div>
 
 
-            <!-- MOBILE CLOSE BUTTON -->
-
-            <button
-                class="sidebar-close"
-                id="sidebarClose"
-                aria-label="Close menu">
-
-                ✕
-
-            </button>
-
-
         </div>
 
 
@@ -466,7 +454,7 @@
 
 
             <span>
-                Offline • Made for Friends ❤️
+                Offline • Made for Friends by Mohammad Rifat Hossain ❤️
             </span>
 
 
@@ -502,22 +490,29 @@ const sidebar =
 
 const sidebarOverlay =
     document.getElementById("sidebarOverlay");
-
-const sidebarClose =
-    document.getElementById("sidebarClose");
-
-
+    
 /* OPEN SIDEBAR */
 
 if (menuButton) {
 
     menuButton.addEventListener("click", () => {
 
-        sidebar.classList.add("open");
+        const isOpen =
+            sidebar.classList.contains("open");
 
-        sidebarOverlay.classList.add("show");
+        if (isOpen) {
 
-        document.body.classList.add("sidebar-open");
+            closeSidebar();
+
+        } else {
+
+            sidebar.classList.add("open");
+
+            sidebarOverlay.classList.add("show");
+
+            document.body.classList.add("sidebar-open");
+
+        }
 
     });
 
@@ -533,16 +528,6 @@ function closeSidebar() {
     sidebarOverlay.classList.remove("show");
 
     document.body.classList.remove("sidebar-open");
-
-}
-
-
-if (sidebarClose) {
-
-    sidebarClose.addEventListener(
-        "click",
-        closeSidebar
-    );
 
 }
 
