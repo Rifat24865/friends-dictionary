@@ -18,7 +18,7 @@ const friends = [
         phone: "+8801835851551",
         profession: "Private job",
         blood: "A+",
-        address: "Chattogram",
+        address: "Nasirabad, Chattogram",
         email: "rifathossain1432015@gmail.com",
         photo: "images/01.jpg"
     },
@@ -30,8 +30,8 @@ const friends = [
         phone: "+8801648155850",
         profession: "Teacher",
         blood: "B+",
-        address: "Baliga,Kaliganj, Gazipur",
-        email: "Diptodas2468@gmail.com",
+        address: "Baliga, Kaliganj, Gazipur",
+        email: "diptodas2468@gmail.com",
         photo: "images/02.jpg"
     },
 
@@ -78,7 +78,7 @@ const friends = [
         phone: "+8801929769941",
         profession: "Pharmacy",
         blood: "A+",
-        address: "Baranagar Kaliganj Gazipur",
+        address: "Baranagar, Kaliganj, Gazipur",
         email: "niloyshakil010@gmail.com",
         photo: "images/06.jpg"
     },
@@ -100,9 +100,9 @@ const friends = [
         name: "Md Pavel",
         group: "Business studies",
         phone: "+8801627950452",
-        profession: "Teachering",
+        profession: "Teacher",
         blood: "B+",
-        address: "Islampara, Danga,palash,Narsingdi",
+        address: "Islampara, Danga, Palash, Narsingdi",
         email: "pabelmiah544@gmail.com",
         photo: "images/08.jpg"
     },
@@ -138,7 +138,7 @@ const friends = [
         phone: "+8801827827392",
         profession: "Banker",
         blood: "O+",
-        address: "chowra, kaliganj",
+        address: "Chowra, Kaliganj",
         email: "kazi.rocky99@gmail.com",
         photo: "images/11.jpg"
     },
@@ -150,7 +150,7 @@ const friends = [
         phone: "+8801709820521",
         profession: "Private Job",
         blood: "O+",
-        address: "Bhora chakidarbari, Hazibug, Gazipur sadar",
+        address: "Bhora Chakidarbari, Hazibug, Gazipur sadar",
         email: "shanto.ipe.pau@gmail.com",
         photo: "images/12.jpg"
     },
@@ -162,19 +162,19 @@ const friends = [
         phone: "+8801628968571",
         profession: "Government employee",
         blood: "AB+",
-        address: "Village: Baligaon, Thana: Kaliganj, District: Gazipur",
+        address: "Baligaon, Kaliganj, Gazipur",
         email: "tarek.hasan8571@gmail.com",
         photo: "images/13.jpg"
     },
 
     {
         id: 14,
-        name: "MOHAMMAD JUNAET HOSSAIN",
+        name: "Mohammad Junaet Hossain",
         group: "Humanities",
         phone: "+8801934494948",
         profession: "Service Holder",
         blood: "AB+",
-        address: "Danga, polash, Narsingdi",
+        address: "Danga, Polash, Narsingdi",
         email: "mdjunayedhossain74162@gmail.com",
         photo: "images/14.jpg"
     },
@@ -210,7 +210,7 @@ const friends = [
         phone: "+8801851141140",
         profession: "Business",
         blood: "B-",
-        address: "Dorishom, Kaligank",
+        address: "Dorishom, Kaliganj",
         email: "fahimdk39@gmail.com",
         photo: "images/17.jpg"
     },
@@ -277,7 +277,7 @@ const friends = [
 
     {
         id: 23,
-        name: "Mohammad benzir Ahammed",
+        name: "Mohammad Benzir Ahammed",
         group: "Business studies",
         phone: "+8801601635984",
         profession: "Job",
@@ -328,9 +328,9 @@ const friends = [
         name: "Habibur Rahman",
         group: "Business studies",
         phone: "+8801311761051",
-        profession: "Salse superviser Bkash",
+        profession: "Sales-superviser Bkash",
         blood: "A+",
-        address: "Vill:Dokkhin shom, po:shom noton bazar,ps:kaligonj, zila:Gazipur",
+        address: "Dokkhin Shom, Kaligonj, Gazipur",
         email: "jabibur.rahman.mridha951@gmail.com",
         photo: "images/27.jpg"
     },
@@ -342,7 +342,7 @@ const friends = [
         phone: "+8801724261854",
         profession: "Job",
         blood: "B+",
-        address: "Kajirchar,danga,palash,narshingdi",
+        address: "Kajirchar, Danga, Palash, Narshingdi",
         email: "tanvir19106@gmail.com",
         photo: "images/28.jpg"
     },
@@ -361,7 +361,7 @@ const friends = [
 
     {
         id: 30,
-        name: "MOHAMMAD ABDULLAH",
+        name: "Mohammad Abdullah",
         group: "Business studies",
         phone: "+8801686343494",
         profession: "Accounts Officer (Quality Feeds Ltd.)",
@@ -397,7 +397,7 @@ const friends = [
 
     {
         id: 33,
-        name: "Abdullah al mamun",
+        name: "Abdullah Al Mamun",
         group: "Business studies",
         phone: "+8801754690470",
         profession: "Job",
@@ -409,7 +409,7 @@ const friends = [
 
     {
         id: 34,
-        name: "Rijwanui Ahmed ( shuvo)",
+        name: "Rijwanui Ahmed (Shuvo)",
         group: "Business studies",
         phone: "+8801682830660",
         profession: "Audit officer",
@@ -421,24 +421,24 @@ const friends = [
 
     {
         id: 35,
-        name: "Chinibash singha",
+        name: "Chinibash Singha",
         group: "Business studies",
         phone: "+8801774064847",
         profession: "Medical Information Officer",
         blood: "O+",
-        address: "Chowra naya bari kaliganj,Gazipur,Dhaka.",
+        address: "Chowra naya bari kaliganj, Gazipur, Dhaka",
         email: "chinibashsingha@gmali.com",
         photo: "images/35.jpg"
     },
 
     {
         id: 36,
-        name: "Md zahirul islam",
+        name: "Md Zahirul Islam",
         group: "Business studies",
         phone: "+966536264792",
         profession: "Marketing",
         blood: "O+",
-        address: "Saudi arabia",
+        address: "Saudi Arabia",
         email: "mzahirul266@gmail.com",
         photo: "images/36.jpg"
     },
@@ -450,7 +450,7 @@ const friends = [
         phone: "+8801714662628",
         profession: "Business",
         blood: "B+",
-        address: "Kajirchar,Danga,Palash,Narsingdi",
+        address: "Kajirchar, Danga, Palash, Narsingdi",
         email: "sheikhsadik023@gmail.com",
         photo: "images/37.jpg"
     },
@@ -462,7 +462,7 @@ const friends = [
         phone: "+8801993522542",
         profession: "Teaching",
         blood: "AB+",
-        address: "Chandaya, kaligonj,Gazipur",
+        address: "Chandaya, Kaligonj, Gazipur",
         email: "abdussalam88225@gmail.com",
         photo: "images/38.jpg"
     },
@@ -474,7 +474,7 @@ const friends = [
         phone: "+8801727360129",
         profession: "Business",
         blood: "A+",
-        address: "Kazair. Danga.polash.Narsingdi",
+        address: "Kazair Char, Danga, Polash, Narsingdi",
         email: "raijb27360@gmail.com",
         photo: "images/39.jpg"
     },
@@ -486,7 +486,7 @@ const friends = [
         phone: "+8801688123498",
         profession: "Jobholder",
         blood: "O+",
-        address: "Vill: Baligaon. Kaliganj,Gazipur.",
+        address: "Baligaon, Kaliganj, Gazipur",
         email: "gmalimulbhuiya@gmail.com",
         photo: "images/40.jpg"
     },
@@ -553,7 +553,7 @@ const friends = [
 
     {
         id: 46,
-        name: "SHOVEN RANJAN DAS",
+        name: "Shoven Ranjan Das",
         group: "Science",
         phone: "+8801400045920",
         profession: "Government Employee",
@@ -562,7 +562,17 @@ const friends = [
         email: "ranjandasshoven@gmail.com",
         photo: "images/46.jpg"
     }
-
+{
+    id: 47,
+    name: "Togor",
+    group: "Science",
+    phone: "+8801952848373",
+    profession: "Job Holder",
+    blood: "O+",
+    address: "Keraniganj, Dhaka, Bangladesh",
+    email: "togor01677@gmail.com",
+    photo: "images/47.jpg"
+}
 ];
 
 
