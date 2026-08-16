@@ -133,7 +133,7 @@ const friends = [
 
     {
         id: 11,
-        name: "Kazi Ashrafuz/zaman",
+        name: "Kazi Ashrafuzzaman",
         group: "Business studies",
         phone: "+8801827827392",
         profession: "Banker",
