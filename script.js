@@ -561,7 +561,7 @@ const friends = [
         address: "Kaliganj, Gazipur",
         email: "ranjandasshoven@gmail.com",
         photo: "images/46.jpg"
-    }
+    },
 {
     id: 47,
     name: "Togor",
