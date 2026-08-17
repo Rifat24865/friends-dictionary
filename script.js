@@ -1250,3 +1250,41 @@ if (
     initializeApp();
 
 }
+/* =========================================
+   PROFILE PHOTO ZOOM
+========================================== */
+
+const photoViewer =
+    document.getElementById("photoViewer");
+
+const largeProfileImage =
+    document.getElementById("largeProfileImage");
+
+const profilePhoto =
+    document.getElementById("profileImage");
+
+
+/* OPEN LARGE PHOTO */
+
+profilePhoto.addEventListener("click", () => {
+
+    if (!profilePhoto.src) return;
+
+    largeProfileImage.src =
+        profilePhoto.src;
+
+    largeProfileImage.alt =
+        profilePhoto.alt;
+
+    photoViewer.classList.add("show");
+
+});
+
+
+/* CLOSE BY TAPPING ANYWHERE */
+
+photoViewer.addEventListener("click", () => {
+
+    photoViewer.classList.remove("show");
+
+});
