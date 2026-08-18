@@ -1089,3 +1089,25 @@ footer span:last-child::after {
 .photo-viewer.show img {
     transform: scale(1);
 }
+/* =========================================
+   FULL SCREEN PROFILE PHOTO VIEWER
+========================================= */
+
+.photo-viewer img {
+    width: auto !important;
+    height: auto !important;
+
+    max-width: 95vw !important;
+    max-height: 95vh !important;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+
+    transform: scale(0.75);
+    transition: transform 0.28s ease;
+}
+
+.photo-viewer.show img {
+    transform: scale(1);
+}
