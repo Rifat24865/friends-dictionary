@@ -572,6 +572,17 @@ const friends = [
     address: "Keraniganj, Dhaka, Bangladesh",
     email: "togor01677@gmail.com",
     photo: "images/47.jpg"
+},
+   {
+    id: 48,
+    name: "Abir Ghosh",
+    group: "Science",
+    phone: "+8801997502680",
+    profession: "Doctor",
+    blood: "O-",
+    address: "Dhanmondi 01, Dhaka, Bangladesh",
+    email: "abirghosh46@gmail.com",
+    photo: "images/48.jpg"
 }
 ];
 
