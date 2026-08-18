@@ -583,9 +583,30 @@ const friends = [
     address: "Dhanmondi 01, Dhaka, Bangladesh",
     email: "abirghosh46@gmail.com",
     photo: "images/48.jpg"
+},
+   {
+    id: 49,
+    name: "Palash Shaha",
+    group: "Business studies",
+    phone: "+8801905144201",
+    profession: "Business",
+    blood: "A+",
+    address: "Kaliganj Bazar, Kaliganj, Gazipur",
+    email: "palashshaha7076@gmail.com",
+    photo: "images/49.jpg"
+},
+   {
+    id: 50,
+    name: "Mohammad Didarul Alam",
+    group: "Business studies",
+    phone: "+8801329459198",
+    profession: "Expatriate",
+    blood: "B+",
+    address: "Kaliganj, Gazipur",
+    email: "mdsalmanfarsid@gmail.com",
+    photo: "images/50.jpg"
 }
 ];
-
 
 /* =====================================================
    HTML ELEMENTS
