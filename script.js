@@ -1286,37 +1286,50 @@ if (
    PROFILE PHOTO ZOOM
 ========================================== */
 
-const photoViewer =
-    document.getElementById("photoViewer");
+function initializePhotoZoom() {
 
-const largeProfileImage =
-    document.getElementById("largeProfileImage");
+    const photoViewer =
+        document.getElementById("photoViewer");
 
-const profilePhoto =
-    document.getElementById("profileImage");
+    const largeProfileImage =
+        document.getElementById("largeProfileImage");
 
+    const profilePhoto =
+        document.getElementById("profileImage");
 
-/* OPEN LARGE PHOTO */
+    if (!photoViewer || !largeProfileImage || !profilePhoto) {
+        console.warn("Photo viewer elements not found.");
+        return;
+    }
 
-profilePhoto.addEventListener("click", () => {
+    profilePhoto.addEventListener("click", () => {
 
-    if (!profilePhoto.src) return;
+        if (!profilePhoto.src) return;
 
-    largeProfileImage.src =
-        profilePhoto.src;
+        largeProfileImage.src =
+            profilePhoto.src;
 
-    largeProfileImage.alt =
-        profilePhoto.alt;
+        largeProfileImage.alt =
+            profilePhoto.alt;
 
-    photoViewer.classList.add("show");
+        photoViewer.classList.add("show");
 
-});
+    });
 
+    photoViewer.addEventListener("click", () => {
 
-/* CLOSE BY TAPPING ANYWHERE */
+        photoViewer.classList.remove("show");
 
-photoViewer.addEventListener("click", () => {
+    });
 
-    photoViewer.classList.remove("show");
+}
 
-});
+if (document.readyState === "loading") {
+
+    document.addEventListener("DOMContentLoaded", initializePhotoZoom);
+
+} else {
+
+    initializePhotoZoom();
+
+}
