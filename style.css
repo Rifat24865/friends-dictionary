@@ -829,7 +829,6 @@ footer span:last-child::after {
     }
 
     .profile-header {
-    .profile-header {
     flex-direction: column;
 
     text-align: center;
@@ -869,8 +868,7 @@ footer span:last-child::after {
     /* ---------------------------------------------
        DETAILS
     --------------------------------------------- */
-
-    .details {
+       
     .details {
     grid-template-columns: 1fr;
 
