@@ -1,521 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- PWA / Mobile -->
-    <meta name="theme-color"
-          content="#0b0f14">
-
-    <meta name="description"
-          content="Friends Dictionary - Offline Friends Directory">
-
-    <meta name="mobile-web-app-capable"
-          content="yes">
-
-    <meta name="apple-mobile-web-app-capable"
-          content="yes">
-
-    <meta name="apple-mobile-web-app-status-bar-style"
-          content="black-translucent">
-
-    <meta name="apple-mobile-web-app-title"
-          content="Friends Dictionary">
-
+    <meta name="theme-color" content="#0b0f14">
+    <meta name="description" content="Friends Dictionary - Offline Friends Directory">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Friends Dictionary">
 
     <!-- APP ICON -->
-
-    <link rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href="images/icon-192.png">
-
-<link rel="apple-touch-icon"
-      href="images/icon-192.png">
-
+    <link rel="icon" type="image/png" sizes="192x192" href="images/icon-192.png">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
 
     <!-- PWA MANIFEST -->
-
-    <link rel="manifest"
-          href="manifest.json">
-
+    <link rel="manifest" href="manifest.json">
 
     <!-- CSS -->
-
-    <link rel="stylesheet"
-          href="style.css">
-
+    <link rel="stylesheet" href="style.css">
 
     <title>Friends Dictionary</title>
-
 </head>
-
 
 <body>
 
-
 <div class="app">
 
+    <!-- MOBILE OVERLAY -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- =========================================
-         MOBILE OVERLAY
-    ========================================== -->
-
-    <div class="sidebar-overlay"
-         id="sidebarOverlay">
-    </div>
-
-
-    <!-- =========================================
-         SIDEBAR
-    ========================================== -->
-
-    <aside class="sidebar"
-           id="sidebar">
-
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
 
         <!-- SIDEBAR HEADER -->
-
         <div class="sidebar-header">
-
-
             <div class="logo">
-
-
-                <div class="logo-icon">
-                    👥
-                </div>
-
-
+                <div class="logo-icon">👥</div>
                 <div>
-
                     <h1>Friends</h1>
-
                     <span>Dictionary</span>
-
                 </div>
-
-
             </div>
-
-
         </div>
-
-
 
         <!-- SEARCH -->
-
         <div class="search-box">
-
-
-            <span>
-                🔍
-            </span>
-
-
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="Search friend..."
-                autocomplete="off"
-            >
-
-
+            <span>🔍</span>
+            <input type="text" id="searchInput" placeholder="Search friend..." autocomplete="off">
         </div>
-
-
 
         <!-- FRIEND COUNT -->
-
         <div class="sidebar-title">
-
-            <span>
-                FRIENDS
-            </span>
-
-            <span id="sidebarFriendCount">
-                0
-            </span>
-
+            <span>FRIENDS</span>
+            <span id="sidebarFriendCount">0</span>
         </div>
-
-
 
         <!-- FRIEND LIST -->
-
-        <div
-            class="friend-list"
-            id="friendList">
-        </div>
-
+        <div class="friend-list" id="friendList"></div>
 
     </aside>
 
-
-
-    <!-- =========================================
-         MAIN CONTENT
-    ========================================== -->
-
+    <!-- MAIN CONTENT -->
     <main class="main">
 
-
-        <!-- =====================================
-             TOP BAR
-        ====================================== -->
-
+        <!-- TOP BAR -->
         <div class="top-bar">
 
-
             <!-- MOBILE MENU BUTTON -->
-
-            <button
-                class="menu-button"
-                id="menuButton"
-                aria-label="Open friends menu">
-
-                ☰
-
-            </button>
-
+            <button class="menu-button" id="menuButton" aria-label="Open friends menu">☰</button>
 
             <div class="top-title">
-
-
-                <span class="welcome">
-                    FRIENDS DIRECTORY
-                </span>
-
-
-                <h2>
-                    Friend Profile
-                </h2>
-
-
+                <span class="welcome">FRIENDS DIRECTORY</span>
+                <h2>Friend Profile</h2>
             </div>
-
 
             <!-- FRIEND COUNT -->
-
             <div class="friend-count">
-
-
-                <span id="friendCount">
-                    0
-                </span>
-
-
+                <span id="friendCount">0</span>
                 Friends
-
-
             </div>
-
 
         </div>
 
-
-
-        <!-- =====================================
-             PROFILE CARD
-        ====================================== -->
-
+        <!-- PROFILE CARD -->
         <section class="profile-card">
 
-
             <!-- PROFILE HEADER -->
-
             <div class="profile-header">
-
-
-                <img
-                    id="profileImage"
-                    src=""
-                    alt="Friend Photo"
-                >
-
+                <img id="profileImage" src="" alt="Friend Photo">
 
                 <div class="profile-name">
-
-
-                    <span class="member-label">
-                        FRIEND PROFILE
-                    </span>
-
-
-                    <h3 id="profileName">
-                        Select a friend
-                    </h3>
-
-
-                    <p id="profileGroup">
-                        Choose a friend from the list
-                    </p>
-
-
+                    <span class="member-label">FRIEND PROFILE</span>
+                    <h3 id="profileName">Select a friend</h3>
+                    <p id="profileGroup">Choose a friend from the list</p>
                 </div>
-
-
             </div>
 
-
-
-            <!-- =================================
-                 FRIEND DETAILS
-            ================================== -->
-
+            <!-- FRIEND DETAILS -->
             <div class="details">
 
-
                 <!-- PHONE -->
-
                 <div class="detail-box">
-
-
-                    <span>
-                        📞
-                    </span>
-
-
+                    <span>📞</span>
                     <div>
-
-
-                        <small>
-                            Phone
-                        </small>
-
-
-                        <a
-                            id="profilePhone"
-                            href="#">
-
-                            —
-
-                        </a>
-
-
+                        <small>Phone</small>
+                        <a id="profilePhone" href="#">—</a>
                     </div>
-
-
                 </div>
-
-
 
                 <!-- PROFESSION -->
-
                 <div class="detail-box">
-
-
-                    <span>
-                        💼
-                    </span>
-
-
+                    <span>💼</span>
                     <div>
-
-
-                        <small>
-                            Profession
-                        </small>
-
-
-                        <p id="profileProfession">
-                            —
-                        </p>
-
-
+                        <small>Profession</small>
+                        <p id="profileProfession">—</p>
                     </div>
-
-
                 </div>
-
-
 
                 <!-- BLOOD GROUP -->
-
                 <div class="detail-box">
-
-
-                    <span>
-                        🩸
-                    </span>
-
-
+                    <span>🩸</span>
                     <div>
-
-
-                        <small>
-                            Blood Group
-                        </small>
-
-
-                        <p id="profileBlood">
-                            —
-                        </p>
-
-
+                        <small>Blood Group</small>
+                        <p id="profileBlood">—</p>
                     </div>
-
-
                 </div>
-
-
 
                 <!-- ADDRESS -->
-
                 <div class="detail-box">
-
-
-                    <span>
-                        📍
-                    </span>
-
-
+                    <span>📍</span>
                     <div>
-
-
-                        <small>
-                            Address
-                        </small>
-
-
-                        <a
-                            id="profileAddress"
-                            href="#"
-                            target="_blank"
-                            rel="noopener">
-
-                            —
-
-                        </a>
-
-
+                        <small>Address</small>
+                        <a id="profileAddress" href="#" target="_blank" rel="noopener">—</a>
                     </div>
-
-
                 </div>
-
-
 
                 <!-- EMAIL -->
-
                 <div class="detail-box full">
-
-
-                    <span>
-                        ✉️
-                    </span>
-
-
+                    <span>✉️</span>
                     <div>
-
-
-                        <small>
-                            Email
-                        </small>
-
-
-                        <a
-                            id="profileEmail"
-                            href="#">
-
-                            —
-
-                        </a>
-
-
+                        <small>Email</small>
+                        <a id="profileEmail" href="#">—</a>
                     </div>
-
-
                 </div>
 
-
             </div>
-
 
         </section>
 
-
-
-        <!-- =====================================
-             FOOTER
-        ====================================== -->
-
+        <!-- FOOTER -->
         <footer>
-
-
-            <span>
-                Friends Dictionary
-            </span>
-
-
-            <span>
-                Offline • Made for Friends❤️
-            </span>
-
-
+            <span>Friends Dictionary</span>
+            <span>Offline • Made for Friends❤️</span>
         </footer>
-
 
     </main>
 
-
 </div>
 
-
-
-<!-- =========================================
-     MAIN JAVASCRIPT
-========================================== -->
-
+<!-- MAIN JAVASCRIPT -->
 <script src="script.js"></script>
 
-<!-- =========================================
-     SERVICE WORKER / PWA OFFLINE SUPPORT
-========================================== -->
-
+<!-- SERVICE WORKER / PWA OFFLINE SUPPORT -->
 <script>
-
 if ("serviceWorker" in navigator) {
-
     window.addEventListener("load", () => {
-
         navigator.serviceWorker
             .register("./service-worker.js")
             .then(() => {
-
-                console.log(
-                    "Friends Dictionary offline mode ready!"
-                );
-
+                console.log("Friends Dictionary offline mode ready!");
             })
             .catch(error => {
-
-                console.log(
-                    "Service Worker error:",
-                    error
-                );
-
+                console.log("Service Worker error:", error);
             });
-
     });
-
 }
-
 </script>
-    
-<!-- =========================================
-     PHOTO VIEWER
-========================================== -->
 
+<!-- PHOTO VIEWER -->
 <div id="photoViewer" class="photo-viewer">
     <img id="largeProfileImage" src="" alt="Friend Photo">
 </div>
-    
-</body>
 
+</body>
 </html>
